@@ -16,6 +16,13 @@ public class User {
 //    @DBRef
     private List bills;
 
+    public User(String firstName, String lastName, String emailAddress, List bills) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.bills = bills;
+    }
+
     public String getId() {
         return id;
     }

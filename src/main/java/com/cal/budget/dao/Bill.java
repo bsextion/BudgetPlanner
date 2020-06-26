@@ -12,8 +12,16 @@ public class Bill {
     @Id
     private String id;
     private String name;
-    private String dueTime;
-    private String amount;
+    private Date dueTime;
+    private double amount;
+    private String category;
+
+    public Bill(String name, Date dueTime, double amount, String category) {
+        this.name = name;
+        this.dueTime = dueTime;
+        this.amount = amount;
+        this.category = category;
+    }
 
     public String getId() {
         return id;
@@ -31,20 +39,28 @@ public class Bill {
         this.name = name;
     }
 
-    public String getDueTime() {
+    public Date getDueTime() {
         return dueTime;
     }
 
-    public void setDueTime(String dueTime) {
+    public void setDueTime(Date dueTime) {
         this.dueTime = dueTime;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override
@@ -53,8 +69,10 @@ public class Bill {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", dueTime=" + dueTime +
-                ", amount='" + amount + '\'' +
-
+                ", amount=" + amount +
+                ", category='" + category + '\'' +
                 '}';
     }
+
+
 }

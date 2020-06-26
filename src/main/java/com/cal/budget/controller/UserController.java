@@ -8,36 +8,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/home")
+@RequestMapping(value = "/user")
 public class UserController {
     private final UserService userService;
     public UserController(@Autowired UserService userService) {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/users", produces = "application/json", method = RequestMethod.GET)
+    @RequestMapping(value = "/", produces = "application/json", method = RequestMethod.GET)
     public Iterable<User> getAllUsers() {
         return userService.getUsers();
     }
 
-    @RequestMapping(value = "/user/{userId}", produces = "application/json", method = RequestMethod.GET)
+    @RequestMapping(value = "/{userId}", produces = "application/json", method = RequestMethod.GET)
     public User getByUserId(@PathVariable("userId") String userId) {
         return userService.getUser(userId);
     }
-    @RequestMapping(value = "/user/add", produces = "application/json", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", produces = "application/json", method = RequestMethod.POST)
     public User createUser(@RequestBody User user) {
-         userService.addUser(user);
-        return user;
+         userService.addUser(user);return user;
     }
 
-    @RequestMapping(value = "/user/{userId}", produces = "application/json", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{userId}", produces = "application/json", method = RequestMethod.PUT)
     public User updateUser(@RequestBody User user, @PathVariable("userId") String userId) {
         user.setId(userId);
        userService.addUser(user);
        return user;
     }
 
-    @RequestMapping(value = "/user/{userId}", produces = "application/json", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{userId}", produces = "application/json", method = RequestMethod.DELETE)
     public String updateUser(@PathVariable("userId") String userId) {
         userService.removeUser(userId);
         return userId;
