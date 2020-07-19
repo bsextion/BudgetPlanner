@@ -1,8 +1,10 @@
 package com.cal.budget.dao;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -12,9 +14,16 @@ public class Bill {
     @Id
     private String id;
     private String name;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date dueTime;
     private double amount;
     private String category;
+    @JsonProperty
+    private boolean isPaid;
+
+    public Bill() {
+
+    }
 
     public Bill(String name, Date dueTime, double amount, String category) {
         this.name = name;
@@ -63,6 +72,14 @@ public class Bill {
         this.category = category;
     }
 
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
+
     @Override
     public String toString() {
         return "Bill{" +
@@ -71,8 +88,7 @@ public class Bill {
                 ", dueTime=" + dueTime +
                 ", amount=" + amount +
                 ", category='" + category + '\'' +
+                ", isPaid=" + isPaid +
                 '}';
     }
-
-
 }
